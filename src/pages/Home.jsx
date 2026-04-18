@@ -2,6 +2,7 @@ import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
 import Sidebar from "../components/Sidebar";
 import "./Home.css";
+import Header from "../components/Header";
 
 function Home() {
   const tvProducts = products.filter((product) => product.category === "tv");
@@ -9,6 +10,8 @@ function Home() {
 
   return (
     <div className="home">
+      <Header />
+
       <div className="layout">
         <Sidebar brands={brands} />
 
