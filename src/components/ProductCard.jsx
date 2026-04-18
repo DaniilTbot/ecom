@@ -3,10 +3,21 @@ import { useState } from "react";
 function ProductCard(props) {
   const product = props.product;
   const [isFavorite, setIsFavorite] = useState(false);
+  const [count, setCount] = useState(0);
 
   function toggleFavorite() {
     setIsFavorite(!isFavorite);
   }
+
+  function increaseCount() {
+    setCount(count + 1);
+  }
+
+  function decreaseCount() {
+  if (count > 0) {
+    setCount(count - 1);
+  }
+}
 
   return (
     <div>
@@ -19,8 +30,18 @@ function ProductCard(props) {
       <p>${product.price}</p>
 
       <button onClick={toggleFavorite}>
-        {isFavorite ? "♥ In Favorites" : "♡ Add to Favorites"}
+        {isFavorite ? "♥ Избранное" : "♡ Добавить в избранное"}
       </button>
+
+      {count === 0 ? (
+        <button onClick={increaseCount}>Добавить в корзину</button>
+      ) : (
+        <div>
+          <button onClick={decreaseCount}>-</button>
+          <span>{count} в корзине</span>
+          <button onClick={increaseCount}>+</button>
+        </div>
+      )}
     </div>
   );
 }
