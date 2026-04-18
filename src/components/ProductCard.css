@@ -37,6 +37,7 @@
   color: black;
 }
 
+/* ОБЩИЕ КНОПКИ */
 .card button {
   margin-top: 8px;
   padding: 6px 10px;
@@ -46,19 +47,17 @@
   background: #f7f7f7;
 }
 
-.card button:hover {
-  background: #f0f0f0;
-}
-
 .card button:active {
   transform: scale(0.95);
 }
 
+/* КАРТИНКА */
 .card-image-wrapper {
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 10px;
+  position: relative;
 }
 
 .card-image {
@@ -67,4 +66,95 @@
   object-fit: cover;
   object-position: center center;
   display: block;
+}
+
+/* СЛАЙДЕР */
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  border: none;
+  margin-top: 0;
+  padding: 0;
+
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.card-image-wrapper:hover .slider-button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slider-button-left {
+  left: 10px;
+}
+
+.slider-button-right {
+  right: 10px;
+}
+
+/* ❤️ ИЗБРАННОЕ */
+
+.favorite-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 10px;
+  border: none;
+
+  margin-top: 0;
+  padding: 0;
+
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s;
+}
+
+/* АКТИВНОЕ СОСТОЯНИЕ */
+.favorite-active {
+  background: #D4183D;
+}
+
+/* hover */
+.favorite-button:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.05);
+}
+
+/* чтобы красный не ломался при hover */
+.favorite-button.favorite-active:hover {
+  background: #D4183D;
+}
+
+/* ИКОНКА */
+.favorite-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.favorite-button.favorite-active {
+  background: #D4183D;
+}
+
+.favorite-button.favorite-active:hover {
+  background: #D4183D;
 }

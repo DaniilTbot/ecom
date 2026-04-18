@@ -1,8 +1,12 @@
 import "./ProductCard.css";
 import { useState } from "react";
 
+import heartFilled from "../assets/heart1.svg";
+import heartEmpty from "../assets/heart2.svg";
+
 function ProductCard(props) {
   const product = props.product;
+
   const [isFavorite, setIsFavorite] = useState(false);
   const [count, setCount] = useState(0);
   const [currentImage, setCurrentImage] = useState(0);
@@ -35,34 +39,76 @@ function ProductCard(props) {
 
   return (
     <div className="card">
+      {/* КАРТИНКА */}
       <div className="card-image-wrapper">
+        <img
+          src={product.images[currentImage]}
+          alt={product.model}
+          className="card-image"
+        />
+
+        {/* ❤️ ИЗБРАННОЕ */}
+        <button
+          className={
+            isFavorite
+              ? "favorite-button favorite-active"
+              : "favorite-button"
+          }
+          onClick={toggleFavorite}
+        >
           <img
-            src={product.images[currentImage]}
-            alt={product.model}
-            className="card-image"
+            src={isFavorite ? heartFilled : heartEmpty}
+            alt="favorite"
+            className="favorite-icon"
           />
-        </div>
+        </button>
 
-      {product.images.length > 1 && (
-        <div>
-          <button onClick={prevImage}>←</button>
-          <span>
-            {currentImage + 1} / {product.images.length}
-          </span>
-          <button onClick={nextImage}>→</button>
-        </div>
-      )}
+        {/* СЛАЙДЕР */}
+        {product.images.length > 1 && (
+          <>
+            <button
+              className="slider-button slider-button-left"
+              onClick={prevImage}
+            >
+              ←
+            </button>
 
+            <button
+              className="slider-button slider-button-right"
+              onClick={nextImage}
+            >
+              →
+            </button>
+
+            {/* ТОЧКИ */}
+            <div className="slider-indicators">
+              {product.images.map((_, index) => (
+                <span
+                  key={index}
+                  className={
+                    index === currentImage
+                      ? "slider-dot slider-dot-active"
+                      : "slider-dot"
+                  }
+                ></span>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* SPECIAL OFFER */}
       {product.isSpecialOffer === true && <p>Special Offer</p>}
 
+      {/* ТЕКСТ */}
       <p>{product.make}</p>
       <h2>{product.model}</h2>
-      <p>${product.price.toLocaleString()}</p>
 
-      <button onClick={toggleFavorite}>
-        {isFavorite ? "♥ Избранное" : "♡ Добавить в избранное"}
-      </button>
+      <p className="card-price">
+        ${product.price.toLocaleString()}
+      </p>
 
+      {/* КОРЗИНА */}
       {count === 0 ? (
         <button onClick={increaseCount}>Добавить в корзину</button>
       ) : (
