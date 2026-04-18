@@ -2,28 +2,39 @@
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   padding: 15px;
-  width: 220px;
+  width: 100%;
+  max-width: 260px;
   background: white;
   transition: 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .card:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
 .card p {
-  margin: 5px 0;
-  color: #555;
+  margin: 0;
+  color: #777;
+  font-size: 14px;
 }
 
 .card h2 {
   font-size: 16px;
   margin: 5px 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-price {
+  font-weight: 600;
+  color: black;
 }
 
 .card button {
@@ -41,4 +52,19 @@
 
 .card button:active {
   transform: scale(0.95);
+}
+
+.card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }

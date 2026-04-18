@@ -35,11 +35,13 @@ function ProductCard(props) {
 
   return (
     <div className="card">
-      <img
-        src={product.images[currentImage]}
-        alt={product.model}
-        width="200"
-      />
+      <div className="card-image-wrapper">
+          <img
+            src={product.images[currentImage]}
+            alt={product.model}
+            className="card-image"
+          />
+        </div>
 
       {product.images.length > 1 && (
         <div>
@@ -55,7 +57,7 @@ function ProductCard(props) {
 
       <p>{product.make}</p>
       <h2>{product.model}</h2>
-      <p>${product.price}</p>
+      <p>${product.price.toLocaleString()}</p>
 
       <button onClick={toggleFavorite}>
         {isFavorite ? "♥ Избранное" : "♡ Добавить в избранное"}

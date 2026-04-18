@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header className="header">
-      <div className="header-logo">TechStore</div>
+      <a href="/tv" className="header-logo">TechStore</a>
 
       <nav className="header-nav">
         <button className="header-link active">TV</button>

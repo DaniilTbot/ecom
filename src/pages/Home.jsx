@@ -21,7 +21,7 @@ function Home() {
             <p>{tvProducts.length} products</p>
 
             <div>
-              <label>Sort by: </label>
+              <label>Отсортировать: </label>
               <select>
                 <option>Цена: По убыванию</option>
                 <option>Цена: По возрастанию</option>
