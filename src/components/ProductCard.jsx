@@ -97,9 +97,6 @@ function ProductCard(props) {
         )}
       </div>
 
-      {/* SPECIAL OFFER */}
-      {product.isSpecialOffer === true && <p>Special Offer</p>}
-
       {/* ТЕКСТ */}
       <p>{product.make}</p>
       <h2>{product.model}</h2>
@@ -110,12 +107,18 @@ function ProductCard(props) {
 
       {/* КОРЗИНА */}
       {count === 0 ? (
-        <button onClick={increaseCount}>Добавить в корзину</button>
+        <button className="add-to-cart-button" onClick={increaseCount}>
+          Добавить в корзину
+        </button>
       ) : (
-        <div>
-          <button onClick={decreaseCount}>-</button>
-          <span>{count} в корзине</span>
-          <button onClick={increaseCount}>+</button>
+        <div className="cart-controls">
+          <button className="cart-minus-button" onClick={decreaseCount}>
+            -
+          </button>
+          <span className="cart-count">{count} в корзине</span>
+          <button className="cart-plus-button" onClick={increaseCount}>
+            +
+          </button>
         </div>
       )}
     </div>
