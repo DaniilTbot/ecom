@@ -10,9 +10,16 @@ function Container() {
   return (
     <>
       <Header pageType={pageType} setPageType={setPageType} cart={cart} />
+
       <main>
-        <Content pageType={pageType} />
+        <Content
+          pageType={pageType}
+          setPageType={setPageType}
+          cart={cart}
+          setCart={setCart}
+        />
       </main>
+
       <Footer />
     </>
   );

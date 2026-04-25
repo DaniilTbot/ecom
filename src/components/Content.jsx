@@ -1,8 +1,15 @@
 import Home from "../pages/Home";
 
-function Content({ pageType }) {
+function Content({ pageType, setPageType, cart, setCart }) {
   if (pageType === "tv") {
-    return <Home />;
+    return (
+      <Home
+        pageType={pageType}
+        setPageType={setPageType}
+        cart={cart}
+        setCart={setCart}
+      />
+    );
   }
 
   if (pageType === "phone") {

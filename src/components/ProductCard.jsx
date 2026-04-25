@@ -4,25 +4,35 @@ import { useState } from "react";
 import heartFilled from "../assets/heart1.svg";
 import heartEmpty from "../assets/heart2.svg";
 
-function ProductCard(props) {
-  const product = props.product;
-
+function ProductCard({ product, cart, setCart }) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const [count, setCount] = useState(0);
   const [currentImage, setCurrentImage] = useState(0);
+
+  const count = cart[product.id] || 0;
 
   function toggleFavorite() {
     setIsFavorite(!isFavorite);
   }
 
   function increaseCount() {
-    setCount(count + 1);
+    setCart({
+      ...cart,
+      [product.id]: count + 1,
+    });
   }
 
   function decreaseCount() {
-    if (count > 0) {
-      setCount(count - 1);
+    if (count === 1) {
+      const newCart = { ...cart };
+      delete newCart[product.id];
+      setCart(newCart);
+      return;
     }
+
+    setCart({
+      ...cart,
+      [product.id]: count - 1,
+    });
   }
 
   function nextImage() {
@@ -39,7 +49,6 @@ function ProductCard(props) {
 
   return (
     <div className="card">
-      {/* КАРТИНКА */}
       <div className="card-image-wrapper">
         <img
           src={product.images[currentImage]}
@@ -47,7 +56,6 @@ function ProductCard(props) {
           className="card-image"
         />
 
-        {/* ❤️ ИЗБРАННОЕ */}
         <button
           className={
             isFavorite
@@ -63,7 +71,6 @@ function ProductCard(props) {
           />
         </button>
 
-        {/* СЛАЙДЕР */}
         {product.images.length > 1 && (
           <>
             <button
@@ -80,7 +87,6 @@ function ProductCard(props) {
               →
             </button>
 
-            {/* ТОЧКИ */}
             <div className="slider-indicators">
               {product.images.map((_, index) => (
                 <span
@@ -97,25 +103,21 @@ function ProductCard(props) {
         )}
       </div>
 
-      {/* ТЕКСТ */}
       <p>{product.make}</p>
       <h2>{product.model}</h2>
 
-      <p className="card-price">
-        ${product.price.toLocaleString()}
-      </p>
+      <p className="card-price">${product.price.toLocaleString()}</p>
 
-      {/* КОРЗИНА */}
       {count === 0 ? (
         <button className="add-to-cart-button" onClick={increaseCount}>
-          Добавить в корзину
+          Add to Cart
         </button>
       ) : (
         <div className="cart-controls">
           <button className="cart-minus-button" onClick={decreaseCount}>
             -
           </button>
-          <span className="cart-count">{count} в корзине</span>
+          <span className="cart-count">{count} in cart</span>
           <button className="cart-plus-button" onClick={increaseCount}>
             +
           </button>

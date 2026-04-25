@@ -3,7 +3,7 @@ import ProductCard from "../components/ProductCard";
 import Sidebar from "../components/Sidebar";
 import "./Home.css";
 
-function Home() {
+function Home({ pageType, setPageType, cart, setCart }) {
   const tvProducts = products.filter((product) => product.category === "tv");
   const brands = [...new Set(tvProducts.map((product) => product.brand))];
 
@@ -27,7 +27,12 @@ function Home() {
 
           <div className="products">
             {tvProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                cart={cart}
+                setCart={setCart}
+              />
             ))}
           </div>
         </main>
