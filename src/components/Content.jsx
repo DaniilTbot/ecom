@@ -1,4 +1,6 @@
 import Home from "../pages/Home";
+import PhoneListing from "../pages/PhoneListing";
+import LaptopListing from "../pages/LaptopListing";
 
 function Content({ pageType, setPageType, cart, setCart }) {
   if (pageType === "tv") {
@@ -13,11 +15,11 @@ function Content({ pageType, setPageType, cart, setCart }) {
   }
 
   if (pageType === "phone") {
-    return <h1>Phone page</h1>;
+    return <PhoneListing cart={cart} setCart={setCart} />;
   }
 
   if (pageType === "laptop") {
-    return <h1>Laptop page</h1>;
+    return <LaptopListing cart={cart} setCart={setCart} />;
   }
 
   if (pageType === "cart") {
