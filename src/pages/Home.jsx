@@ -11,6 +11,7 @@ function Home({ cart, setCart }) {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("5000");
+  const [sortType, setSortType] = useState("low-to-high");
 
   const [appliedFilters, setAppliedFilters] = useState({
     brand: "",
@@ -41,6 +42,14 @@ function Home({ cart, setCart }) {
     return matchesBrand && matchesMinPrice && matchesMaxPrice;
   });
 
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortType === "low-to-high") {
+      return a.price - b.price;
+    }
+
+    return b.price - a.price;
+  });
+
   return (
     <div className="home">
       <div className="layout">
@@ -57,19 +66,22 @@ function Home({ cart, setCart }) {
 
         <main className="content">
           <div className="toolbar">
-            <p>{filteredProducts.length} товаров</p>
+            <p>{sortedProducts.length} товаров</p>
 
             <div>
               <label>Сортировка: </label>
-              <select>
-                <option>Цена: по возрастанию</option>
-                <option>Цена: по убыванию</option>
+              <select
+                value={sortType}
+                onChange={(event) => setSortType(event.target.value)}
+              >
+                <option value="low-to-high">Цена: по возрастанию</option>
+                <option value="high-to-low">Цена: по убыванию</option>
               </select>
             </div>
           </div>
 
           <div className="products">
-            {filteredProducts.map((product) => (
+            {sortedProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
