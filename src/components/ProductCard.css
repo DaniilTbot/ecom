@@ -2,7 +2,7 @@
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   padding: 15px;
-  width: 100%;
+  flex: 0 1 260px;
   max-width: 260px;
   background: white;
   transition: 0.3s;
@@ -38,7 +38,6 @@
   font-size: 18px;
 }
 
-/* ОБЩИЕ КНОПКИ */
 .card button {
   margin-top: 8px;
   padding: 6px 10px;
@@ -52,7 +51,6 @@
   transform: scale(0.95);
 }
 
-/* КАРТИНКА */
 .card-image-wrapper {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -69,7 +67,6 @@
   display: block;
 }
 
-/* СЛАЙДЕР */
 .slider-button {
   position: absolute;
   top: 50%;
@@ -103,8 +100,6 @@
   right: 10px;
 }
 
-/* ❤️ ИЗБРАННОЕ */
-
 .favorite-button {
   position: absolute;
   top: 10px;
@@ -129,23 +124,19 @@
   transition: 0.2s;
 }
 
-/* АКТИВНОЕ СОСТОЯНИЕ */
 .favorite-active {
-  background: #D4183D;
+  background: #d4183d;
 }
 
-/* hover */
 .favorite-button:hover {
   background: rgba(255, 255, 255, 0.95);
   transform: scale(1.05);
 }
 
-/* чтобы красный не ломался при hover */
 .favorite-button.favorite-active:hover {
-  background: #D4183D;
+  background: #d4183d;
 }
 
-/* ИКОНКА */
 .favorite-icon {
   width: 20px;
   height: 20px;
@@ -153,11 +144,11 @@
 }
 
 .favorite-button.favorite-active {
-  background: #D4183D;
+  background: #d4183d;
 }
 
 .favorite-button.favorite-active:hover {
-  background: #D4183D;
+  background: #d4183d;
 }
 
 .add-to-cart-button {
@@ -208,12 +199,12 @@
 
 .cart-minus-button:hover {
   background: #020326;
-  color: white
+  color: white;
 }
 
 .cart-plus-button:hover {
   background: #020326;
-  color: white
+  color: white;
 }
 
 .cart-count {
