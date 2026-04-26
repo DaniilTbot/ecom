@@ -1,5 +1,5 @@
-import cartIcon from "../assets/icon.svg";
-import profileIcon from "../assets/icon2.svg";
+import profileIcon from "../assets/icon.svg";
+import cartIcon from "../assets/icon2.svg";
 
 function Header({ pageType, setPageType, cart }) {
   const totalItems = Object.values(cart).reduce((sum, count) => sum + count, 0);
