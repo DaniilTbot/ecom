@@ -1,18 +1,11 @@
-import Home from "../pages/Home";
+import TvListing from "../pages/TvListing";
 import PhoneListing from "../pages/PhoneListing";
 import LaptopListing from "../pages/LaptopListing";
 import Cart from "../pages/Cart";
 
 function Content({ pageType, setPageType, cart, setCart }) {
   if (pageType === "tv") {
-    return (
-      <Home
-        pageType={pageType}
-        setPageType={setPageType}
-        cart={cart}
-        setCart={setCart}
-      />
-    );
+    return <TvListing cart={cart} setCart={setCart} />;
   }
 
   if (pageType === "phone") {
@@ -33,7 +26,7 @@ function Content({ pageType, setPageType, cart, setCart }) {
     );
   }
 
-  return <h1>Page not found</h1>;
+  return <h1>Страница не найдена</h1>;
 }
 
 export default Content;
