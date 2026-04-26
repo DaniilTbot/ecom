@@ -40,18 +40,28 @@ function Cart({ cart, setCart, setPageType }) {
   if (cartItems.length === 0) {
     return (
       <div className="home">
-        <div className="cart-page">
-          <h1>Корзина пуста</h1>
-          <button onClick={() => setPageType("tv")}>Продолжить покупки</button>
-        </div>
+        <section className="cart-page cart-page-empty">
+          <h1 className="cart-title">Корзина</h1>
+
+          <div className="empty-cart-box">
+            <p className="empty-cart-text">Ваша корзина пуста</p>
+            <button
+              className="empty-cart-button"
+              onClick={() => setPageType("tv")}
+              type="button"
+            >
+              Продолжить покупки
+            </button>
+          </div>
+        </section>
       </div>
     );
   }
 
   return (
     <div className="home">
-      <div className="cart-page">
-        <h1>Корзина</h1>
+      <section className="cart-page">
+        <h1 className="cart-title">Корзина</h1>
 
         <div className="cart-layout">
           <div className="cart-items">
@@ -70,33 +80,45 @@ function Cart({ cart, setCart, setPageType }) {
                   <div className="cart-item-info">
                     <p>{product.make}</p>
                     <h2>{product.model}</h2>
-                    <p>${itemTotal.toLocaleString()}</p>
+                    <p>${itemTotal.toFixed(2)}</p>
                   </div>
 
                   <div className="cart-item-controls">
-                    <button onClick={() => decreaseQuantity(product.id)}>-</button>
+                    <button onClick={() => decreaseQuantity(product.id)} type="button">
+                      -
+                    </button>
                     <span>{quantity}</span>
-                    <button onClick={() => increaseQuantity(product.id)}>+</button>
+                    <button onClick={() => increaseQuantity(product.id)} type="button">
+                      +
+                    </button>
                   </div>
 
-                  <button onClick={() => removeItem(product.id)}>Удалить</button>
+                  <button
+                    className="cart-remove-button"
+                    onClick={() => removeItem(product.id)}
+                    type="button"
+                  >
+                    Удалить
+                  </button>
                 </div>
               );
             })}
           </div>
 
-          <div className="cart-summary">
+          <aside className="cart-summary">
             <h2>Сумма заказа</h2>
             <p>Подытог: ${subtotal.toFixed(2)}</p>
             <p>Налог (8%): ${tax.toFixed(2)}</p>
             <p>Доставка: Рассчитывается при оформлении</p>
             <p>Итого: ${total.toFixed(2)}</p>
 
-            <button>Перейти к оформлению</button>
-            <button onClick={() => setPageType("tv")}>Назад к покупкам</button>
-          </div>
+            <button type="button">Перейти к оформлению</button>
+            <button onClick={() => setPageType("tv")} type="button">
+              Назад к покупкам
+            </button>
+          </aside>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

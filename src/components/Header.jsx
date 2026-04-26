@@ -1,3 +1,6 @@
+import cartIcon from "../assets/icon.svg";
+import profileIcon from "../assets/icon2.svg";
+
 function Header({ pageType, setPageType, cart }) {
   const totalItems = Object.values(cart).reduce((sum, count) => sum + count, 0);
 
@@ -30,12 +33,19 @@ function Header({ pageType, setPageType, cart }) {
         </button>
       </nav>
 
-      <div className="header-icons">
-        <button onClick={() => setPageType("cart")}>
-          🛒 {totalItems}
+      <div className="header-actions">
+        <button
+          className="header-icon-button"
+          onClick={() => setPageType("cart")}
+          aria-label="Открыть корзину"
+        >
+          <img src={cartIcon} alt="Корзина" className="header-icon-image" />
+          {totalItems > 0 && <span className="header-cart-badge">{totalItems}</span>}
         </button>
 
-        <span>👤</span>
+        <button className="header-icon-button" aria-label="Профиль" type="button">
+          <img src={profileIcon} alt="Профиль" className="header-icon-image" />
+        </button>
       </div>
     </header>
   );
