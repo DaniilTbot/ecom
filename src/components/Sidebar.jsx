@@ -1,13 +1,23 @@
-function Sidebar(props) {
-  const brands = props.brands;
-
+function Sidebar({
+  brands,
+  selectedBrand,
+  setSelectedBrand,
+  minPrice,
+  setMinPrice,
+  maxPrice,
+  setMaxPrice,
+  onApplyFilters,
+}) {
   return (
     <aside className="sidebar">
       <h2>Фильтры</h2>
 
       <div className="filter-block">
         <label>Бренд</label>
-        <select>
+        <select
+          value={selectedBrand}
+          onChange={(event) => setSelectedBrand(event.target.value)}
+        >
           <option value="">Все бренды</option>
           {brands.map((brand) => (
             <option key={brand} value={brand}>
@@ -20,16 +30,25 @@ function Sidebar(props) {
       <div className="filter-block">
         <label>Цена</label>
         <div className="price-inputs">
-            <input type="number" placeholder="Мин" />
-            <input type="number" placeholder="Макс" />
+          <input
+            type="number"
+            placeholder="Мин"
+            value={minPrice}
+            onChange={(event) => setMinPrice(event.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Макс"
+            value={maxPrice}
+            onChange={(event) => setMaxPrice(event.target.value)}
+          />
         </div>
-        
       </div>
 
-      <button>Применить фильтры</button>
+      <button onClick={onApplyFilters}>Применить фильтры</button>
 
       <div className="special-deal">
-        <h3>Special Deal</h3>
+        <h3>Специальное предложение</h3>
         <p>0:59:59</p>
       </div>
     </aside>
